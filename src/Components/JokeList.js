@@ -8,26 +8,29 @@ class JokeList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      jokes: [],
+      jokes: JSON.parse(window.localStorage.getItem("jokes") || "[]"),
       currentPage: 0
     };
     this.changeRating = this.changeRating.bind(this);
     this.generateNewJokes = this.generateNewJokes.bind(this);
   }
   componentDidMount() {
-    axios
-      .get(`${url}`, {
-        headers: { Accept: "application/json" },
-        params: { limit: 10 }
-      })
-      .then(res => {
-        let data = res.data;
-        let jokeList = data.results.map((d, i) => {
-          d.rating = 0;
-          return d;
+    if (this.state.jokes.length === 0) {
+      axios
+        .get(`${url}`, {
+          headers: { Accept: "application/json" },
+          params: { limit: 10 }
+        })
+        .then(res => {
+          let data = res.data;
+          let jokeList = data.results.map((d, i) => {
+            d.rating = 0;
+            return d;
+          });
+          this.setState({ currentPage: data.current_page, jokes: jokeList });
+          window.localStorage.setItem("jokes", JSON.stringify(jokeList));
         });
-        this.setState({ currentPage: data.current_page, jokes: jokeList });
-      });
+    }
   }
   changeRating(id, direction) {
     let newRatings = this.state.jokes.map(j => {
@@ -41,7 +44,9 @@ class JokeList extends Component {
     let newSort = newRatings.sort((a, b) => {
       return b.rating - a.rating;
     });
-    this.setState({ jokes: newSort });
+    this.setState({ jokes: newSort }, () =>
+      window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes))
+    );
   }
   generateNewJokes() {
     this.setState({ jokes: [] });
