@@ -9,9 +9,9 @@ class Joke extends Component {
     return (
       <div className="Joke">
         <div className="Joke--rating_container">
-          <i class="fas fa-arrow-up Joke--icon"></i>
+          <i className="fas fa-arrow-up Joke--icon"></i>
           <div className="Joke--rating"></div>
-          <i class="fas fa-arrow-down Joke--icon"></i>
+          <i className="fas fa-arrow-down Joke--icon"></i>
         </div>
         <div className="Joke--description">Description</div>
         <div className="Joke--scale">
