@@ -63,7 +63,9 @@ class JokeList extends Component {
           d.rating = 0;
           return d;
         });
-        this.setState({ jokes: jokeList, currentPage: data.current_page });
+        this.setState({ jokes: jokeList, currentPage: data.current_page }, () =>
+          window.localStorage.setItem("jokes", JSON.stringify(jokeList))
+        );
       });
   }
   render() {
