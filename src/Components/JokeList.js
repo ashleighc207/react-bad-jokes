@@ -44,7 +44,6 @@ class JokeList extends Component {
     this.setState({ jokes: newSort });
   }
   generateNewJokes() {
-    console.log("text");
     this.setState({ jokes: [] });
     let pg = this.state.currentPage,
       next = `${pg + 1}`;
