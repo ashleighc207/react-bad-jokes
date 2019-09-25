@@ -15,21 +15,21 @@ class Joke extends Component {
   }
   render() {
     let jokeReaction =
-      this.props.rating > 40
+      this.props.rating >= 40
         ? "fa-grin-squint-tears"
-        : this.props.rating > 20
+        : this.props.rating >= 20
         ? "fa-grin-tears"
-        : this.props.rating > 10
+        : this.props.rating >= 10
         ? "fa-laugh-beam"
-        : this.props.rating > 0
+        : this.props.rating >= 0
         ? "fa-smile"
         : this.props.rating === 0
         ? "fa-meh"
-        : this.props.rating < 0 && this.props.rating > -30
+        : this.props.rating < 0 && this.props.rating >= -30
         ? "fa-surprise"
         : "fa-tired";
     let color =
-      this.props.rating > 40
+      this.props.rating >= 40
         ? "Joke--green"
         : this.props.rating === 0
         ? ""
