@@ -43,7 +43,6 @@ class JokeList extends Component {
     let newSort = newRatings.sort((a, b) => {
       return b.rating - a.rating;
     });
-    console.log();
     this.setState({ jokes: newSort }, () =>
       window.localStorage.setItem("jokes", JSON.stringify(newSort))
     );
