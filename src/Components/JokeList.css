@@ -13,6 +13,8 @@
 
 .JokeList--jokes {
   width: 50%;
+  overflow-y: scroll;
+  height: 100vh;
 }
 
 .JokeList--panel {

@@ -2,9 +2,13 @@ import React, { Component } from "react";
 import "./JokeList.css";
 import Joke from "./Joke.js";
 import axios from "axios";
-const url = "https://icanhazdadjoke.com/search?";
+const url = "https://icanhazdadjoke.com/";
+const uuid = require("uuid/v4");
 
 class JokeList extends Component {
+  static defaultProps = {
+    jokeCount: 10
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -14,22 +18,17 @@ class JokeList extends Component {
     this.changeRating = this.changeRating.bind(this);
     this.generateNewJokes = this.generateNewJokes.bind(this);
   }
-  componentDidMount() {
+  async componentDidMount() {
+    let jokeList = [];
     if (this.state.jokes.length === 0) {
-      axios
-        .get(`${url}`, {
-          headers: { Accept: "application/json" },
-          params: { limit: 10 }
-        })
-        .then(res => {
-          let data = res.data;
-          let jokeList = data.results.map((d, i) => {
-            d.rating = 0;
-            return d;
-          });
-          this.setState({ currentPage: data.current_page, jokes: jokeList });
-          window.localStorage.setItem("jokes", JSON.stringify(jokeList));
+      while (jokeList.length < this.props.jokeCount) {
+        let res = await axios.get(`${url}`, {
+          headers: { Accept: "application/json" }
         });
+        jokeList.push({ id: uuid(), text: res.data.joke, rating: 0 });
+      }
+      this.setState({ jokes: jokeList });
+      window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes));
     }
   }
   changeRating(id, direction) {
@@ -44,29 +43,26 @@ class JokeList extends Component {
     let newSort = newRatings.sort((a, b) => {
       return b.rating - a.rating;
     });
+    console.log();
     this.setState({ jokes: newSort }, () =>
-      window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes))
+      window.localStorage.setItem("jokes", JSON.stringify(newSort))
     );
   }
-  generateNewJokes() {
-    this.setState({ jokes: [] });
-    let pg = this.state.currentPage,
-      next = `${pg + 1}`;
-    axios
-      .get(`${url}`, {
-        headers: { Accept: "application/json" },
-        params: { limit: 10, page: next }
-      })
-      .then(res => {
-        let data = res.data;
-        let jokeList = data.results.map((d, i) => {
-          d.rating = 0;
-          return d;
-        });
-        this.setState({ jokes: jokeList, currentPage: data.current_page }, () =>
-          window.localStorage.setItem("jokes", JSON.stringify(jokeList))
-        );
+  async generateNewJokes() {
+    let jokeList = [];
+    while (jokeList.length < this.props.jokeCount) {
+      let res = await axios.get(`${url}`, {
+        headers: { Accept: "application/json" }
       });
+      jokeList.push({ id: uuid(), text: res.data.joke, rating: 0 });
+    }
+    this.setState(
+      prevState => ({
+        jokes: [...prevState.jokes, ...jokeList]
+      }),
+      () =>
+        window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes))
+    );
   }
   render() {
     let jokes = this.state.jokes.map(joke => {
@@ -74,7 +70,7 @@ class JokeList extends Component {
         <Joke
           key={joke.id}
           id={joke.id}
-          text={joke.joke}
+          text={joke.text}
           changeRating={this.changeRating}
           rating={joke.rating}
         />
