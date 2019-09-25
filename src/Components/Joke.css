@@ -30,15 +30,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 1px 5px 10px rgba(33, 33, 33, 0.3);
 }
 
 .Joke--description {
   padding: 10px 40px;
+  border-radius: 50%;
 }
 
 .Joke--laugh_scale {
   font-size: 50px;
   color: #424242;
+  border-radius: 50%;
+  box-shadow: 1px 5px 10px rgba(33, 33, 33, 0.3);
 }
 
 .Joke--green {
