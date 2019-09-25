@@ -3,6 +3,7 @@
   justify-content: space-between;
   width: 100%;
   align-items: center;
+  margin: 20px 0px;
 }
 
 .Joke--rating_container {
@@ -22,4 +23,9 @@
   margin: 0px 5px;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.Joke--description {
+  padding: 10px 40px;
 }

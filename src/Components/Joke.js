@@ -4,18 +4,32 @@ import "./Joke.css";
 class Joke extends Component {
   constructor(props) {
     super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick(evt) {
+    let direction = "";
+    evt.target.classList.contains("fa-arrow-down")
+      ? (direction = "down")
+      : (direction = "up");
+    this.props.changeRating(this.props.id, direction);
   }
   render() {
     return (
       <div className="Joke">
         <div className="Joke--rating_container">
-          <i className="fas fa-arrow-up Joke--icon"></i>
-          <div className="Joke--rating"></div>
-          <i className="fas fa-arrow-down Joke--icon"></i>
+          <i
+            className="fas fa-arrow-up Joke--icon"
+            onClick={this.handleClick}
+          ></i>
+          <div className="Joke--rating">{this.props.rating}</div>
+          <i
+            className="fas fa-arrow-down Joke--icon"
+            onClick={this.handleClick}
+          ></i>
         </div>
-        <div className="Joke--description">Description</div>
+        <div className="Joke--description">{this.props.text}</div>
         <div className="Joke--scale">
-          <i> laugh scale </i>
+          <i className="far fa-surprise Joke--laugh_scale"></i>
         </div>
       </div>
     );

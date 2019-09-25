@@ -1,0 +1,12 @@
+.JokeList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.JokeList--panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
