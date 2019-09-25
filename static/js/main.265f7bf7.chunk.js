@@ -1,0 +1,2 @@
+(window["webpackJsonpreact-joke-api"]=window["webpackJsonpreact-joke-api"]||[]).push([[0],[,,,function(e,n,t){e.exports=t(10)},,,,,function(e,n,t){},function(e,n,t){},function(e,n,t){"use strict";t.r(n);var a=t(0),o=t.n(a),c=t(2),r=t.n(c);t(8),t(9);var i=function(){return o.a.createElement("div",{className:"App"})};r.a.render(o.a.createElement(i,null),document.getElementById("root"))}],[[3,1,2]]]);
+//# sourceMappingURL=main.265f7bf7.chunk.js.map
