@@ -13,10 +13,12 @@ class JokeList extends Component {
     super(props);
     this.state = {
       jokes: JSON.parse(window.localStorage.getItem("jokes") || "[]"),
-      currentPage: 0
+      currentPage: 0,
+      loading: false
     };
     this.changeRating = this.changeRating.bind(this);
     this.generateNewJokes = this.generateNewJokes.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   async componentDidMount() {
     let jokeList = [];
@@ -27,7 +29,7 @@ class JokeList extends Component {
         });
         jokeList.push({ id: uuid(), text: res.data.joke, rating: 0 });
       }
-      this.setState({ jokes: jokeList });
+      this.setState({ jokes: jokeList, loading: false });
       window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes));
     }
   }
@@ -57,11 +59,15 @@ class JokeList extends Component {
     }
     this.setState(
       prevState => ({
+        loading: false,
         jokes: [...prevState.jokes, ...jokeList]
       }),
       () =>
         window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes))
     );
+  }
+  handleClick() {
+    this.setState({ loading: true }, this.generateNewJokes);
   }
   render() {
     let jokes = this.state.jokes.map(joke => {
@@ -80,15 +86,30 @@ class JokeList extends Component {
         <div className="JokeList--inner_container">
           <div className="JokeList--panel">
             <div className="JokeList--heading">Bad Jokes</div>
-            <button
-              className="JokeList--button"
-              onClick={this.generateNewJokes}
-            >
+            <button className="JokeList--button" onClick={this.handleClick}>
               New Jokes
             </button>
           </div>
         </div>
-        <div className="JokeList--jokes">{jokes}</div>
+        <div className="JokeList--jokes">
+          {this.state.loading ? (
+            <div className="JokeList--loader">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          ) : null}
+          {jokes}
+        </div>
       </div>
     );
   }
