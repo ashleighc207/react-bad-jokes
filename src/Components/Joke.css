@@ -3,7 +3,10 @@
   justify-content: space-between;
   width: 100%;
   align-items: center;
-  margin: 20px 0px;
+  padding: 20px;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-collapse: collapse;
+  max-width: 500px;
 }
 
 .Joke--rating_container {
@@ -16,9 +19,10 @@
 }
 
 .Joke--rating {
-  width: 35px;
-  height: 35px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  font-size: 12px;
   border: 2px solid #424242;
   margin: 0px 5px;
   display: flex;
@@ -28,4 +32,9 @@
 
 .Joke--description {
   padding: 10px 40px;
+}
+
+.Joke--laugh_scale {
+  /* font-size: 50px; */
+  color: #424242;
 }

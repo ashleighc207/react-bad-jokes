@@ -14,7 +14,6 @@ class Joke extends Component {
     this.props.changeRating(this.props.id, direction);
   }
   render() {
-    console.log(this.props.rating < 0, this.props.rating >= -30);
     let jokeReaction =
       this.props.rating > 40
         ? "fa-grin-squint-tears"
@@ -29,7 +28,6 @@ class Joke extends Component {
         : this.props.rating < 0 && this.props.rating > -30
         ? "fa-surprise"
         : "fa-tired";
-    console.log(jokeReaction);
     return (
       <div className="Joke">
         <div className="Joke--rating_container">

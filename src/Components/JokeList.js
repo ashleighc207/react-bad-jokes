@@ -56,7 +56,12 @@ class JokeList extends Component {
     });
     return (
       <div className="JokeList">
-        <div></div>
+        <div className="JokeList--inner_container">
+          <div className="JokeList--panel">
+            <div className="JokeList--heading">Bad Jokes</div>
+            <button className="JokeList--button">New Jokes</button>
+          </div>
+        </div>
         <div>{jokes}</div>
       </div>
     );
