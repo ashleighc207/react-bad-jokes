@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/react-bad-jokes/static/css/main.29205e96.chunk.css",
+    "main.css": "/react-bad-jokes/static/css/main.406418c5.chunk.css",
     "main.js": "/react-bad-jokes/static/js/main.11658595.chunk.js",
     "main.js.map": "/react-bad-jokes/static/js/main.11658595.chunk.js.map",
     "runtime-main.js": "/react-bad-jokes/static/js/runtime-main.e568f8b1.js",
@@ -8,8 +8,8 @@
     "static/js/2.ccfff893.chunk.js": "/react-bad-jokes/static/js/2.ccfff893.chunk.js",
     "static/js/2.ccfff893.chunk.js.map": "/react-bad-jokes/static/js/2.ccfff893.chunk.js.map",
     "index.html": "/react-bad-jokes/index.html",
-    "precache-manifest.e50cea2e464305f683f196af84f95038.js": "/react-bad-jokes/precache-manifest.e50cea2e464305f683f196af84f95038.js",
+    "precache-manifest.bd2bd653a85db47f91818b2d271d5193.js": "/react-bad-jokes/precache-manifest.bd2bd653a85db47f91818b2d271d5193.js",
     "service-worker.js": "/react-bad-jokes/service-worker.js",
-    "static/css/main.29205e96.chunk.css.map": "/react-bad-jokes/static/css/main.29205e96.chunk.css.map"
+    "static/css/main.406418c5.chunk.css.map": "/react-bad-jokes/static/css/main.406418c5.chunk.css.map"
   }
 }
