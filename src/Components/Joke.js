@@ -14,6 +14,22 @@ class Joke extends Component {
     this.props.changeRating(this.props.id, direction);
   }
   render() {
+    console.log(this.props.rating < 0, this.props.rating >= -30);
+    let jokeReaction =
+      this.props.rating > 40
+        ? "fa-grin-squint-tears"
+        : this.props.rating > 20
+        ? "fa-grin-tears"
+        : this.props.rating > 10
+        ? "fa-laugh-beam"
+        : this.props.rating > 0
+        ? "fa-smile"
+        : this.props.rating === 0
+        ? "fa-meh"
+        : this.props.rating < 0 && this.props.rating > -30
+        ? "fa-surprise"
+        : "fa-tired";
+    console.log(jokeReaction);
     return (
       <div className="Joke">
         <div className="Joke--rating_container">
@@ -29,7 +45,7 @@ class Joke extends Component {
         </div>
         <div className="Joke--description">{this.props.text}</div>
         <div className="Joke--scale">
-          <i className="far fa-surprise Joke--laugh_scale"></i>
+          <i className={`far ${jokeReaction} Joke--laugh_scale`}></i>
         </div>
       </div>
     );

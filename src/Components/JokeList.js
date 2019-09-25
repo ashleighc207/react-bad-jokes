@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./JokeList.css";
 import Joke from "./Joke.js";
-import uuid from "uuid/v4";
 import axios from "axios";
 const url = "https://icanhazdadjoke.com/";
 const params = "search?limit=10";
@@ -24,19 +23,21 @@ class JokeList extends Component {
         let data = res.data;
         let jokeList = data.results.map((d, i) => {
           d.rating = 0;
+          return d;
         });
-        this.setState({ currentPage: data.current_page, jokes: data.results });
+        this.setState({ currentPage: data.current_page, jokes: jokeList });
       });
   }
   changeRating(id, direction) {
-    this.state.jokes.map(j => {
+    let newRatings = this.state.jokes.map(j => {
       if (direction === "up" && j.id === id) {
         j.rating += 1;
       } else if (direction === "down" && j.id === id) {
         j.rating -= 1;
       }
+      return j;
     });
-    let newSort = this.state.jokes.sort((a, b) => {
+    let newSort = newRatings.sort((a, b) => {
       return b.rating - a.rating;
     });
     this.setState({ jokes: newSort });
