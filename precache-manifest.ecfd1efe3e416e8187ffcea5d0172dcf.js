@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ead475f5e65794184379c9374fc8b64e",
+    "revision": "5c36288822d4b17a659fa4c28b7c358c",
     "url": "/react-bad-jokes/index.html"
   },
   {
-    "revision": "98838b1d679cfdd741cf",
-    "url": "/react-bad-jokes/static/css/main.14ea0e90.chunk.css"
+    "revision": "19bdd23617e02aea7e31",
+    "url": "/react-bad-jokes/static/css/main.23b420a6.chunk.css"
   },
   {
     "revision": "6be27ede050d5954c3b8",
     "url": "/react-bad-jokes/static/js/2.28818b7a.chunk.js"
   },
   {
-    "revision": "98838b1d679cfdd741cf",
-    "url": "/react-bad-jokes/static/js/main.f2f134e6.chunk.js"
+    "revision": "19bdd23617e02aea7e31",
+    "url": "/react-bad-jokes/static/js/main.8036cf34.chunk.js"
   },
   {
     "revision": "b14a758194bd21ee04a6",
