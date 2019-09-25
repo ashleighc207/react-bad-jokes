@@ -28,6 +28,14 @@ class Joke extends Component {
         : this.props.rating < 0 && this.props.rating > -30
         ? "fa-surprise"
         : "fa-tired";
+    let color =
+      this.props.rating > 40
+        ? "Joke--green"
+        : this.props.rating === 0
+        ? ""
+        : this.props.rating > 0
+        ? "Joke--yellow"
+        : "Joke--red";
     return (
       <div className="Joke">
         <div className="Joke--rating_container">
@@ -35,7 +43,7 @@ class Joke extends Component {
             className="fas fa-arrow-up Joke--icon"
             onClick={this.handleClick}
           ></i>
-          <div className="Joke--rating">{this.props.rating}</div>
+          <div className={`Joke--rating ${color}`}>{this.props.rating}</div>
           <i
             className="fas fa-arrow-down Joke--icon"
             onClick={this.handleClick}
@@ -43,7 +51,7 @@ class Joke extends Component {
         </div>
         <div className="Joke--description">{this.props.text}</div>
         <div className="Joke--scale">
-          <i className={`far ${jokeReaction} Joke--laugh_scale`}></i>
+          <i className={`far ${jokeReaction} ${color} Joke--laugh_scale`}></i>
         </div>
       </div>
     );

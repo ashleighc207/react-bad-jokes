@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import "./JokeList.css";
 import Joke from "./Joke.js";
 import axios from "axios";
-const url = "https://icanhazdadjoke.com/";
-const params = "search?limit=10";
+const url = "https://icanhazdadjoke.com/search?";
 
 class JokeList extends Component {
   constructor(props) {
@@ -13,11 +12,13 @@ class JokeList extends Component {
       currentPage: 0
     };
     this.changeRating = this.changeRating.bind(this);
+    this.generateNewJokes = this.generateNewJokes.bind(this);
   }
   componentDidMount() {
     axios
-      .get(`${url}${params}`, {
-        headers: { Accept: "application/json" }
+      .get(`${url}`, {
+        headers: { Accept: "application/json" },
+        params: { limit: 10 }
       })
       .then(res => {
         let data = res.data;
@@ -42,6 +43,25 @@ class JokeList extends Component {
     });
     this.setState({ jokes: newSort });
   }
+  generateNewJokes() {
+    console.log("text");
+    this.setState({ jokes: [] });
+    let pg = this.state.currentPage,
+      next = `${pg + 1}`;
+    axios
+      .get(`${url}`, {
+        headers: { Accept: "application/json" },
+        params: { limit: 10, page: next }
+      })
+      .then(res => {
+        let data = res.data;
+        let jokeList = data.results.map((d, i) => {
+          d.rating = 0;
+          return d;
+        });
+        this.setState({ jokes: jokeList, currentPage: data.current_page });
+      });
+  }
   render() {
     let jokes = this.state.jokes.map(joke => {
       return (
@@ -59,10 +79,15 @@ class JokeList extends Component {
         <div className="JokeList--inner_container">
           <div className="JokeList--panel">
             <div className="JokeList--heading">Bad Jokes</div>
-            <button className="JokeList--button">New Jokes</button>
+            <button
+              className="JokeList--button"
+              onClick={this.generateNewJokes}
+            >
+              New Jokes
+            </button>
           </div>
         </div>
-        <div>{jokes}</div>
+        <div className="JokeList--jokes">{jokes}</div>
       </div>
     );
   }

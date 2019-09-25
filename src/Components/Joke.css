@@ -6,16 +6,18 @@
   padding: 20px;
   border: 1px solid rgba(33, 33, 33, 0.2);
   border-collapse: collapse;
-  max-width: 500px;
 }
 
 .Joke--rating_container {
   display: flex;
   align-items: center;
+  font-weight: bold;
 }
 
 .Joke--icon {
-  font-size: 14px;
+  font-size: 16px;
+  color: #424242;
+  cursor: pointer;
 }
 
 .Joke--rating {
@@ -35,6 +37,21 @@
 }
 
 .Joke--laugh_scale {
-  /* font-size: 50px; */
+  font-size: 50px;
   color: #424242;
+}
+
+.Joke--green {
+  border-color: #99ccbb;
+  color: #99ccbb;
+}
+
+.Joke--red {
+  border-color: #ff8899;
+  color: #ff8899;
+}
+
+.Joke--yellow {
+  border-color: #ffdd66;
+  color: #ffdd66;
 }
