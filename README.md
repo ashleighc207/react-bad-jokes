@@ -8,7 +8,7 @@ This is a simple web app for calling an api to return a set of 10 bad jokes.
 
 - See the site live here: https://ashleighc207.github.io/react-bad-jokes/
 
-<!-- <img src="example.png" alt="Example image" width="350" align="center"/> -->
+<img src="example.png" alt="Example image" width="350" align="center"/>
 
 ## How to Launch the App
 
